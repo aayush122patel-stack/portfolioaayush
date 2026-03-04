@@ -146,7 +146,7 @@ export default function Contact() {
               </div>
               <div>
                 <h4 className="text-white/40 text-xs uppercase tracking-widest mb-1">Call Me</h4>
-                <p className="text-xl font-display font-bold">9022475528</p>
+                <p className="text-xl font-display font-bold">8233135505</p>
               </div>
             </div>
 
