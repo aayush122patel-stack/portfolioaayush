@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Space+Grotesk:wght@300;400;500;600&family=Orbitron:wght@400;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Outfit", sans-serif;
+  --font-neon: "Orbitron", sans-serif;
+
+  --color-vice-bg: #0a0a0c;
+  --color-vice-pink: #ff71ce;
+  --color-vice-teal: #01ffff;
+  --color-vice-purple: #b967ff;
+  --color-vice-blue: #05ffa1;
+}
+
+@layer base {
+  body {
+    @apply bg-vice-bg text-white selection:bg-vice-pink/30 selection:text-vice-pink;
+    cursor: none;
+  }
+}
+
+@layer utilities {
+  .neon-text-pink {
+    text-shadow: 0 0 10px rgba(255, 113, 206, 0.5), 0 0 20px rgba(255, 113, 206, 0.3);
+  }
+  .neon-text-teal {
+    text-shadow: 0 0 10px rgba(1, 255, 255, 0.5), 0 0 20px rgba(1, 255, 255, 0.3);
+  }
+  .neon-border-pink {
+    box-shadow: 0 0 10px rgba(255, 113, 206, 0.3), inset 0 0 5px rgba(255, 113, 206, 0.2);
+  }
+  .neon-border-teal {
+    box-shadow: 0 0 10px rgba(1, 255, 255, 0.3), inset 0 0 5px rgba(1, 255, 255, 0.2);
+  }
+  .glass {
+    @apply bg-white/5 backdrop-blur-md border border-white/10;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-vice-bg;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-white/10 rounded-full hover:bg-vice-pink/50 transition-colors;
+}
