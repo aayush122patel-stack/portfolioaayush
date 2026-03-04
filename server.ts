@@ -2,6 +2,12 @@ import express from "express";
 import { createServer as createViteServer } from "vite";
 import dotenv from "dotenv";
 import fetch from "node-fetch";
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 dotenv.config();
 
@@ -24,8 +30,6 @@ async function startServer() {
         body: JSON.stringify(req.body),
       });
 
-      // Google Apps Script redirects on success, node-fetch handles it by default
-      // but we just need to know if it went through.
       if (response.ok || response.status === 302) {
         return res.json({ success: true });
       } else {
@@ -46,8 +50,24 @@ async function startServer() {
       appType: "spa",
     });
     app.use(vite.middlewares);
+
+    // Fallback to index.html for SPA
+    app.use("*", async (req, res, next) => {
+      const url = req.originalUrl;
+      try {
+        let template = fs.readFileSync(path.resolve(__dirname, "index.html"), "utf-8");
+        template = await vite.transformIndexHtml(url, template);
+        res.status(200).set({ "Content-Type": "text/html" }).end(template);
+      } catch (e) {
+        vite.ssrFixStacktrace(e as Error);
+        next(e);
+      }
+    });
   } else {
     app.use(express.static("dist"));
+    app.get("*", (req, res) => {
+      res.sendFile(path.resolve(__dirname, "dist", "index.html"));
+    });
   }
 
   app.listen(PORT, "0.0.0.0", () => {
