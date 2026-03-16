@@ -32,6 +32,12 @@ const projects = [
     category: 'Hospitals / Clinics',
     link: 'https://youdentindia.netlify.app/',
     color: 'from-vice-pink to-vice-teal'
+  },
+  {
+    title: 'SolidStone',
+    category: 'Builders / Real Estate',
+    link: 'https://solidstone.netlify.app/',
+    color: 'from-vice-teal to-vice-purple'
   }
 ];
 
