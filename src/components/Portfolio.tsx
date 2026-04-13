@@ -6,7 +6,7 @@ const projects = [
   {
     title: 'The Mentor Academy',
     category: 'Coaching / Consulting',
-    link: 'https://thementorfinal.netlify.app/',
+    link: 'https://mentoracademyhub.netlify.app/',
     color: 'from-vice-pink to-vice-purple'
   },
   {
